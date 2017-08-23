@@ -302,7 +302,7 @@
                             <Resource name="Left eye leds" type="Lock" timeout="0" />
                             <Resource name="Right eye leds" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="ZeroAuth Transaction" id="5" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="643" y="34">
+                        <Box name="PreAuth Transaction" id="5" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="643" y="34">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -315,11 +315,11 @@ class EncryptedCreditSale(object):
         self.invoiceNo = 001
         self.encryptedBlock = >F40DDBA1F645CC8DB85A6459D45AFF8002C244A0F74402B479ABC9915EC9567C81BE99CE4483AF3D
         self.encryptedKey = 9012090B01C4F200002B
-        self.purchase = 0.00
+        self.purchase = 1.00
 
     def process(self):
         # TranType: {Credit,PrePaid, PayPal, etc} / TranCode {Sale, Return, Void}'
-        url = 'https://w1.mercurycert.net/PaymentsAPI/Credit/ZeroAuth'
+        url = 'https://w1.mercurycert.net/PaymentsAPI/Credit/PreAuth'
 
         payload = {'InvoiceNo': self.invoiceNo,
                     'Memo': 'Nao Payment Bot',
@@ -358,7 +358,7 @@ class EncryptedCreditSale(object):
 
     def process(self):
         # TranType: {Credit,PrePaid, PayPal, etc} / TranCode {Sale, Return, Void}'
-        url = 'https://w1.mercurycert.net/PaymentsAPI/Credit/Sale'
+        url = 'https://w1.mercurycert.net/PaymentsAPI/Credit/PreAuthCapture'
 
         payload = {'InvoiceNo': self.invoiceNo,
                     'Memo': 'Nao Payment Bot',
